@@ -1,5 +1,7 @@
 ---
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -10,8 +12,20 @@ devtools::load_all()
 
 ```{r}
 
-brainsprite('sprite.jpg',
+brainsprite(sprites = 'sprite.jpg',
             spriteHeight = 233,
             spriteWidth = 189)
+
+```
+
+
+```{r}
+
+brainsprite(sprites = 'sprite.jpg',
+            spriteHeight = 233,
+            spriteWidth = 189,
+            overlay = 'dmnSprite.png',
+            overlayHeight = 233,
+            overlayWidth = 189)
 
 ```
