@@ -12,7 +12,7 @@ devtools::load_all()
 
 ```{r}
 
-brainsprite(sprites = 'sprite.jpg',
+brainsprite(sprites = 'sprite.jpg',flagCoordinates = TRUE,
             spriteHeight = 233,
             spriteWidth = 189)
 
