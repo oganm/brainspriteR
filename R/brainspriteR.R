@@ -2,7 +2,7 @@
 brainsprite = function(sprites,
                        spriteHeight = 233,
                        spriteWidth = 189,
-                       id = tempfile('id') %>% basename,
+                       inputId = tempfile('id') %>% basename,
                        spriteID = tempfile('id') %>% basename,
                        flagCoordinates = FALSE,
                        origin = c(0,0,0),
@@ -14,15 +14,15 @@ brainsprite = function(sprites,
                        height = NULL,
                        width = NULL){
 
-    script = glue::glue(" $( window ).load(function() {
+    script = glue::glue(" $( <spriteID> ).load(function() {
                        var brain = brainsprite({
-                       canvas: '<id>', // That is the ID of the canvas to build slices into
+                       canvas: '<inputId>', // That is the ID of the canvas to build slices into
                        sprite: '<spriteID>', // That is the ID of the sprite image that includes all (sagital) brain slices
                        nbSlice: { 'Y':<spriteHeight> , 'Z':<spriteWidth> },
                         flagCoordinates: <tolower(flagCoordinates)>,
                         origin: {X: <origin[1]>, Y: <origin[2]>, Z: <origin[3]>},
                         onclick: function shinyUpdate(brain){
-                            Shiny.onInputChange('<id>',[brain.coordinatesSlice.X,brain.coordinatesSlice.Y ,brain.coordinatesSlice.Z])
+                            Shiny.onInputChange('<inputId>',[brain.coordinatesSlice.X,brain.coordinatesSlice.Y ,brain.coordinatesSlice.Z])
                         }"
                        ,.open = '<',.close = '>')
 
@@ -40,16 +40,16 @@ brainsprite = function(sprites,
     script = paste0(script,end)
 
     out = htmltools::tagList(htmltools::div(
-        glue::glue('<canvas id="{id}">') %>% htmltools::HTML(),
-        htmltools::img(id = spriteID,src = sprites, class = 'hidden'),
-        htmltools::img(id = overlayID,src = overlay, class = 'hidden'),
+        glue::glue('<canvas id="{inputId}">') %>% htmltools::HTML(),
+        htmltools::img(id = spriteID,src = sprites),
+        htmltools::img(id = overlayID,src = overlay),
         height = height,
         width = width),
         htmltools::includeScript(system.file('inst/brainsprite/brainsprite.js',package = 'brainspriteR')),
         htmltools::includeScript(system.file('inst/brainsprite/jquery.min.js',package = 'brainspriteR')),
         htmltools::tags$script(script))
 
-    class(out) = append(class(out),'brainsprite')
+    class(out) = append('brainsprite',class(out))
 
     return(out)
 }
