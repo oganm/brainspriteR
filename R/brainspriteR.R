@@ -2,31 +2,36 @@
 brainsprite = function(sprites,
                        spriteHeight = 233,
                        spriteWidth = 189,
-                       id = tempfile() %>% basename,
-                       spriteID = tempfile() %>% basename,
+                       id = tempfile('id') %>% basename,
+                       spriteID = tempfile('id') %>% basename,
                        flagCoordinates = FALSE,
+                       origin = c(0,0,0),
                        overlay = NULL,
                        overlayHeight = NULL,
                        overlayWidth = NULL,
-                       overlayID = tempfile() %>% basename,
+                       overlayID = tempfile('id') %>% basename,
                        overlayOpacity = 0.5,
                        height = NULL,
                        width = NULL){
 
     script = glue::glue(" $( window ).load(function() {
                        var brain = brainsprite({
-                       canvas: '[id]', // That is the ID of the canvas to build slices into
-                       sprite: '[spriteID]', // That is the ID of the sprite image that includes all (sagital) brain slices
-                       nbSlice: { 'Y':[spriteHeight] , 'Z':[spriteWidth] },
-                        flagCoordinates: [tolower(flagCoordinates)]"
-                       ,.open = '[',.close = ']')
+                       canvas: '<id>', // That is the ID of the canvas to build slices into
+                       sprite: '<spriteID>', // That is the ID of the sprite image that includes all (sagital) brain slices
+                       nbSlice: { 'Y':<spriteHeight> , 'Z':<spriteWidth> },
+                        flagCoordinates: <tolower(flagCoordinates)>,
+                        origin: {X: <origin[1]>, Y: <origin[2]>, Z: <origin[3]>},
+                        onclick: function shinyUpdate(brain){
+                            Shiny.onInputChange('<id>',[brain.coordinatesSlice.X,brain.coordinatesSlice.Y ,brain.coordinatesSlice.Z])
+                        }"
+                       ,.open = '<',.close = '>')
 
     if(!is.null(overlay)){
         script = glue::glue(script,",
                    overlay: {
-                       sprite: '[overlayID]',
-                       nbSlice:  { 'Y':[overlayHeight] , 'Z':[overlayWidth] }
-                   }",.open = '[',.close = ']')
+                       sprite: '<overlayID>',
+                       nbSlice:  { 'Y':<overlayHeight> , 'Z':<overlayWidth> }
+                   }",.open = '<',.close = '>')
     }
 
     end = "});
