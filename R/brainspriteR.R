@@ -45,8 +45,8 @@ brainsprite = function(sprites,
         htmltools::img(id = overlayID,src = overlay),
         height = height,
         width = width),
-        htmltools::includeScript(system.file('inst/brainsprite/brainsprite.js',package = 'brainspriteR')),
-        htmltools::includeScript(system.file('inst/brainsprite/jquery.min.js',package = 'brainspriteR')),
+        htmltools::includeScript(system.file('brainsprite/brainsprite.js',package = 'brainspriteR')),
+        htmltools::includeScript(system.file('brainsprite/jquery.min.js',package = 'brainspriteR')),
         htmltools::tags$script(script))
 
     class(out) = append('brainsprite',class(out))
