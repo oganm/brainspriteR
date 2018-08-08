@@ -54,7 +54,7 @@ brainsprite = function(sprites,
     return(out)
 }
 
-
+#' @export
 print.brainsprite = function(x){
     tempFile <- tempfile()
     tempFile = 'hede.html'
