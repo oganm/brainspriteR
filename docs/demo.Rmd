@@ -1,0 +1,56 @@
+---
+output: html_document
+runtime: shiny
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(brainspriteR)
+library(shiny)
+addResourcePath('img','.')
+```
+
+## BrainspriteR examples
+
+See [brainsprite.js](https://github.com/SIMEXP/brainsprite.js) to see how should brain sprite and overlay images be prepared. This demo uses [these](img/sprite.jpg) brain sprites and [these](img/dmnSprite.png) overlay sprites.
+
+```{r}
+
+brainsprite(sprites = 'sprite.jpg',
+            flagCoordinates = TRUE,
+            spriteHeight = 233,
+            spriteWidth = 189)
+
+```
+
+Overlay images can also be added
+
+```{r}
+
+brainsprite(sprites = 'sprite.jpg',
+            spriteHeight = 233,
+            spriteWidth = 189,
+            overlay = 'dmnSprite.png',
+            overlayHeight = 233,
+            overlayWidth = 189)
+
+```
+
+It can also be used as a shiny input
+
+```{r}
+brainsprite(sprites = 'sprite.jpg',
+            flagCoordinates = TRUE,
+            inputId = 'spriteInput',
+            spriteHeight = 233,
+            spriteWidth = 189)
+
+```
+```{r}
+renderText({input$spriteInput})
+```
+
+
+The output is an array corresponding to X, Y, Z coordinates of the clicked location

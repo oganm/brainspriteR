@@ -12,20 +12,28 @@ devtools::load_all()
 
 ```{r}
 
-brainsprite(sprites = 'sprite.jpg',flagCoordinates = TRUE,
+brainsprite(sprites = 'sprite.jpg',
             spriteHeight = 233,
             spriteWidth = 189)
+
+```
+
+```{r}
+
+# brainsprite(sprites = 'sprite.jpg',flagCoordinates = TRUE,
+#             spriteHeight = 233,
+#             spriteWidth = 189)
 
 ```
 
 
 ```{r}
 
-brainsprite(sprites = 'sprite.jpg',
-            spriteHeight = 233,
-            spriteWidth = 189,
-            overlay = 'dmnSprite.png',
-            overlayHeight = 233,
-            overlayWidth = 189)
+# brainsprite(sprites = 'sprite.jpg',
+#             spriteHeight = 233,
+#             spriteWidth = 189,
+#             overlay = 'dmnSprite.png',
+#             overlayHeight = 233,
+#             overlayWidth = 189)
 
 ```
