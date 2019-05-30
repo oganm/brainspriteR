@@ -1,6 +1,6 @@
 Package: brainspriteR
 Title: R wrapper for the brainsprite.js
-Version: 0.0.0.9000
+Version: 1.0.0.9000
 Authors@R: person("B. Ogan", "Mancarci", email = "ogan.mancarci@gmail.com", role = c("aut", "cre"))
 Description: Turns an image that includes a stack of brain slices in sagital plane 
     into three brain slices in different planes (sagital, coronal, axial) that can
